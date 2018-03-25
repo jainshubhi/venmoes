@@ -1,0 +1,6 @@
+# Venv
+venmo/*
+
+*.pyc
+
+settings.py

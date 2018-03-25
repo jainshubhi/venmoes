@@ -1,0 +1,156 @@
+{
+  "properties": {
+    "date_created": {
+      "format": "dateOptionalTime",
+          "type": "date"
+    },
+    "payment_type": {
+      "type": "text"
+    },
+    "payment_status": {
+      "type": "text"
+    },
+    "date_completed": {
+      "format": "dateOptionalTime",
+          "type": "date"
+    },
+    "target_merchant": {
+      "type": "text"
+    },
+    "redeemable_target": {
+      "type": "text"
+    },
+    "target_phone": {
+      "type" : "text"
+    },
+    "target_type": {
+      "type": "text"
+    },
+    "target": {
+      "properties": {
+        "first_name": {
+          "type": "text"
+        },
+        "last_name": {
+          "type": "text"
+        },
+        "email": {
+          "type": "text"
+        },
+        "username": {
+          "type": "text"
+        },
+        "date_joined": {
+          "format": "dateOptionalTime",
+              "type": "date"
+        },
+        "venmo_id": {
+          "type": "text"
+        },
+        "is_user": {
+          "type": "boolean"
+        },
+        "validated": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "text"
+        },
+        "is_group": {
+          "type": "boolean"
+        },
+        "friends_count": {
+          "type": "integer"
+        },
+        "profile_picture_url": {
+                "type": "text"
+        },
+        "fb_url": {
+                "type": "text"
+        },
+        "phone": {
+          "type" : "text"
+        },
+        "about": {
+          "type": "text"
+        }
+      }
+    },
+    "target_email": {
+      "type": "text"
+    },
+    "actor": {
+      "properties": {
+        "first_name": {
+          "type": "text"
+        },
+        "last_name": {
+          "type": "text"
+        },
+        "email": {
+          "type": "text"
+        },
+        "username": {
+          "type": "text"
+        },
+        "date_joined": {
+          "format": "dateOptionalTime",
+              "type": "date"
+        },
+        "venmo_id": {
+          "type": "text"
+        },
+        "is_user": {
+          "type": "boolean"
+        },
+        "validated": {
+          "type": "boolean"
+        },
+        "id": {
+          "type": "text"
+        },
+        "is_group": {
+          "type": "boolean"
+        },
+        "friends_count": {
+          "type": "integer"
+        },
+        "profile_picture_url": {
+                "type": "text"
+        },
+        "fb_url": {
+                "type": "text"
+        },
+        "phone": {
+          "type" : "text"
+        },
+        "about": {
+          "type": "text"
+        }
+      }
+    },
+    "audience": {
+      "type": "text"
+    },
+    "note": {
+      "type": "text"
+    },
+    "amount": {
+      "type": "float"
+    },
+    "action": {
+      "type": "text"
+    },
+    "date_authorized": {
+      "format": "dateOptionalTime",
+          "type": "date"
+    },
+    "date_reminded": {
+      "format": "dateOptionalTime",
+          "type": "date"
+    },
+    "id": {
+      "type": "text"
+    }
+  }
+}
