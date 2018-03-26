@@ -1,9 +1,11 @@
-from flask import Flask, request
+from flask import Flask, request, Response
 
 from clients.dynamo_client import DynamoClient
 from clients.es_client import EsClient
 from models.user import User
 from models.transaction import Transaction
+
+import json
 
 app = Flask(__name__)
 
@@ -23,11 +25,14 @@ def new_user():
         user = User(first_name, last_name, email, username, True)
         dc = DynamoClient()
         if dc.add_user(user, new_account=True):
-            return '200, ok.'
+            return Response(json.dumps({'200 OK': 'The request has succeeded'}),
+                            status=200, mimetype='application/json')
         else:
-            return '422, user already exists.'
+            return Response(json.dumps({'422 BAD': 'The user already exists'}),
+                            status=422, mimetype='application/json')
     else:
-        return '400, invalid params.'
+        return Response(json.dumps({'400 BAD': 'Invalid params for adding user'}),
+                        status=400, mimetype='application/json')
 
 @app.route('/<user_id>', methods=['POST'])
 def new_transaction(user_id):
@@ -38,7 +43,8 @@ def new_transaction(user_id):
     dc = DynamoClient()
     user = dc.get_user_by_id(user_id)
     if user is None:
-        return '403, invalid auth.'
+        return Response(json.dumps({'403 BAD': 'Unauthorized access to webhook'}),
+                        status=403, mimetype='application/json')
 
     # If user is valid, make sure that actor or target is the user.
     req_data = request.get_json()
@@ -47,12 +53,15 @@ def new_transaction(user_id):
         try:
             t = Transaction(req_data)
         except:
-            return '400, invalid payload.'
+            return Response(json.dumps({'400 BAD': 'Invalid params for transaction payload'}),
+                            status=400, mimetype='application/json')
         # If all is good, index the transaction.
         es = EsClient()
         es.add_transaction(t)
-        return '200, ok.'
-    return '403, invalid auth.'
+        return Response(json.dumps({'200 OK': 'The request has succeeded'}),
+                        status=200, mimetype='application/json')
+    return Response(json.dumps({'403 BAD': 'Unauthorized access to webhook'}),
+                    status=403, mimetype='application/json')
 
 if __name__ == '__main__': 
     app.run()
